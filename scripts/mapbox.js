@@ -3,10 +3,10 @@ var map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/dark-v11',
 //   style: 'mapbox://styles/jz3077/ck2nj1ztk0vws1cnru1jxiq4h',
-  center: [-74, 40.8],
-  zoom: 10,
-  pitch:0,
-  bearing:0
+    center: [-74, 40.7],
+    zoom: 10.4,
+    pitch:0,
+    bearing:0
 });
 
 // disable map zoom when using scroll

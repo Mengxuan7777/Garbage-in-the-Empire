@@ -17,10 +17,24 @@
 <body>
     <div class="container">
         <div class="full">
-            <h1>Garbage in the Empire</h1>
-            <video autoplay loop muted>
-                <source src="img/tonageVideo.mp4">
-            </video>
+            <div class="centered">
+                <h1>Garbage in the Empire</h1>
+            </div>
+            <div class="background">
+                <img src="img/sankey.gif" width=auto, height=100%>
+                <!-- <video autoplay loop muted>
+                    <source src="img/tonageVideo.mp4">
+                </video> -->
+            </div>
+        </div>
+        <div class="half">
+            <div class="left" id="textbox">
+                <h2>All About Density</h2>
+                <p>New York City's 1811 Commissioners Plan laied out the historical root of the garbage issue. All lands are used to maximize the land value without considering the space for garbage handlling after urban evelution</p>
+            </div>
+            <div class="right">
+                <img src="img/NYCGrid1811.jpg">
+            </div>
         </div>
         <div class="half">
             <div class="left">
@@ -28,7 +42,6 @@
                 <p>New York City's 1811 Commissioners Plan laied out the historical root of the garbage issue. All lands are used to maximize the land value without considering the space for garbage handlling after urban evelution</p>
             </div>
             <div class="right">
-                <img src="img/NYCGrid1811.jpg">
                 <img src="img/plate28-37-42-9ave.jpg">
             </div>
         </div>
@@ -38,40 +51,23 @@
                 <h2>Collecting Efforts from DSNY</h2>
                 <p>narrative</p>
             </div> 
-        </div>
-        
+        </div> 
         <div class="half">
             <div class="left">
                 <h2>Density = Quantity / areas</h2>
                 <p>New York City's 1811 Commissioners Plan laied out the historical root of the garbage issue. All lands are used to maximize the land value without considering the space for garbage handlling after urban evelution</p>
             </div>
             <div class="right">
-                <img src="img/planceholder.PNG">
+                <iframe
+                id="inlineFrameExample"
+                title="Inline Frame Example"
+                width=100%
+                height=800px
+                frameborder="0"
+                src="https://jon-marchos.github.io/boroughcircle/">
+              </iframe>
             </div>
-        </div>
-        <div class="full">
-            <div id="cesiumContainer1">
-                <div class="story">
-                    <h2>Case Study - Residential District</h2>
-                    <p>narrative</p>
-                </div>
-            </div>
-        </div>
-        <div class="full">
-            <div id="cesiumContainer2">
-                <div class="story">
-                    <h2>Case Study - Commercial District</h2>
-                    <p>narrative</p>
-                </div>
-            </div>
-        </div>
-        <div class="full">
-            <div>
-                <h2>Future of The Empire of Garbage</h1>
-            </div>
-            <img src="img/planceholder.PNG">
-        </div>
-    </div>
+
 
 <script src="scripts/scroll.js"></script>
 <script src="scripts/mapbox.js"></script>
