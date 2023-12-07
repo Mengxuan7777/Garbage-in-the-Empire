@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3.js Interactive Bar Chart</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+        /* Add CSS for tooltip */
+        .tooltip {
+            position: absolute;
+            background-color: white;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            pointer-events: none;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="bar-chart"></div>
+    <div class="tooltip"></div>
+
+    <script>
+        // Load JSON data and create a bar chart
+        d3.json("merged_data_updated.geojson").then(function(data) {
+            // Sort the data by income (B19013_001E) in ascending order
+            
+            data.sort((a, b) => a.B19013_001E - b.B19013_001E);
+
+            // Set up dimensions and margins
+            const margin = { top: 20, right: 30, bottom: 60, left: 80 };
+            const width = 800 - margin.left - margin.right;
+            const height = 500 - margin.top - margin.bottom;
+
+            // Create an SVG element
+            const svg = d3
+                .select("#bar-chart")
+                .append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", `translate(${margin.left},${margin.top})`);
+
+            // Calculate the x-axis width for each bar
+            const barWidth = width / data.length;
+
+            // Define y scale
+            const yScale = d3.scaleLinear().domain([0, d3.max(data, d => d.B01001_001E)]).range([height, 0]);
+
+            // Define color scale based on the ratio of B01001_001E / supermarket_count
+            const colorScale = d3.scaleSequential(d3.interpolatePiYG).domain([(d3.max(data, d => d.B01001_001E / d.supermarket_count)*0.5), 0]);
+            // Create bars
+            svg
+                .selectAll(".bar")
+                .data(data)
+                .enter()
+                .append("rect")
+                .attr("class", "bar")
+                .attr("x", (d, i) => i * barWidth) // Set x position based on index
+                .attr("y", d => yScale(d.B01001_001E))
+                .attr("width", barWidth) // Set the width of each bar
+                .attr("height", d => height - yScale(d.B01001_001E))
+                .attr("fill", d => colorScale(d.B01001_001E / d.supermarket_count))
+                .on("mouseover", function(event, d) {
+                    showTooltip(event, d);
+                })
+                .on("mouseout", hideTooltip);
+
+                        // Add click event to toggle sorting order
+            svg.on("click", function() {
+                // Toggle the sorting order
+                ascending = !ascending;
+
+                // Sort the data based on the sorting order and update the bars
+                data.sort((a, b) => {
+                    const ratioA = a.B01001_001E / a.supermarket_count;
+                    const ratioB = b.B01001_001E / b.supermarket_count;
+                    return ascending ? ratioA - ratioB : ratioB - ratioA;
+                });
+
+                
+
+                // Update the x position of the bars
+                bars.transition()
+                    .duration(500)
+                    .attr("x", (d, i) => i * barWidth);
+            });
+
+            // Add y-axis
+            svg
+                .append("g")
+                .attr("class", "y-axis")
+                .call(d3.axisLeft(yScale));
+
+            // Add axis labels and title as needed
+            svg
+                .append("text")
+                .attr("x", width / 2)
+                .attr("y", height + margin.top + 0)
+                .attr("text-anchor", "middle")
+                .style("font-family", "Helvetica") // Set the font-family to Helvetica
+                .style("font-size", "14px")
+                .text("Average income, ranked");
+                
+            svg
+                .append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 17.5 - margin.left) 
+                .attr("x",0 - (height / 2))
+                .attr("dy", "1em")
+                .style("text-anchor", "middle")
+                .style("font-family", "Helvetica") // Set the font-family to Helvetica
+                .style("font-size", "14px")
+                .text("Total Population");
+
+
+            // Define tooltip div
+            const tooltip = d3.select(".tooltip");
+
+            function showTooltip(event, d) {
+                // Calculate Persons served per supermarket
+                const personsPerSupermarket = d.B01001_001E / d.supermarket_count;
+
+                // Set tooltip content
+                const tooltipContent = `
+                    <strong>${d.ntaname}</strong><br>
+                    Average income: $${d.B19013_001E}<br>
+                    Population: ${d.B01001_001E}<br>
+                    Supermarket count: ${d.supermarket_count}<br>
+                    Persons served per supermarket: ${personsPerSupermarket.toFixed(2)}
+                `;
+
+                // Position tooltip and show it
+                tooltip
+                    .style("left", `${event.pageX}px`)
+                    .style("top", `${event.pageY}px`)
+                    .style("opacity", 1)
+                    .style("font-family", "Helvetica") // Set the font-family to Helvetica
+                    .style("font-size", "12px")
+                    .html(tooltipContent);
+            }
+
+            function hideTooltip() {
+                // Hide tooltip
+                tooltip.style("opacity", 0);
+            }
+        });
+    </script>
+</body>
+</html>
