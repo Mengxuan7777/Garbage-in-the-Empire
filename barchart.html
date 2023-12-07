@@ -2,8 +2,8 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>D3: A starting point for interactivity</title>
-		<script type="text/javascript" src="../d3.js"></script>
+		<title>TonageBarchart</title>
+		<script type="text/javascript" src="lib/d3.js"></script>
 		<style type="text/css">
 			/* No style rules here yet */		
 		</style>
@@ -12,44 +12,52 @@
 		<script type="text/javascript">
 
 			//Width and height
-			var w = 600;
-			var h = 250;
-			
-			var dataset = d3.csv("assets/aggregated_Tonnage_and_Geodata-2020.csv")
+			var w = 1000;
+			var h = 600;
 
-			var xScale = d3.scaleBand()
-							.domain(d3.range(dataset.length))
-							.rangeRound([0, w])
-							.paddingInner(0.05);
-
-			var yScale = d3.scaleLinear()
-							.domain([0, d3.max(dataset)])
-							.range([0, h]);
-			
-			//Create SVG element
+			// Create SVG element
 			var svg = d3.select("body")
 						.append("svg")
 						.attr("width", w)
 						.attr("height", h);
+			
+			// Load CSV file
+			d3.csv("assets/aggregated_Tonnage_and_Geodata-2020.csv").then(function(dataset) {
+				// Ensure data is in correct format
+				dataset.forEach(function(d) {
+					d.REFUSETONSCOLLECTED = +d.REFUSETONSCOLLECTED;
+				});
 
-			//Create bars
-			svg.selectAll("rect")
-			   .data(dataset)
-			   .enter()
-			   .append("rect")
-			   .attr("x", function(d, i) {
-			   		return xScale(i);
-			   })
-			   .attr("y", function(d) {
-			   		return h - yScale(d);
-			   })
-			   .attr("width", xScale.bandwidth())
-			   .attr("height", function(d) {
-			   		return yScale(d);
-			   })
-			   .attr("fill", function(d) {
-					return "rgb(0, 0, " + Math.round(d * 10) + ")";
-			   });
+				// Create scales
+				var xScale = d3.scaleBand()
+								.domain(dataset.map(d => d.DISTRICT))
+								.rangeRound([0, w])
+								.paddingInner(0.05);
+
+				var yScale = d3.scaleLinear()
+								.domain([0, d3.max(dataset, d => d.REFUSETONSCOLLECTED)])
+								.range([h, 0]);
+
+				// Create bars
+				svg.selectAll("rect")
+					.data(dataset)
+					.enter()
+					.append("rect")
+					.attr("x", d => xScale(d.DISTRICT))
+					.attr("y", d => yScale(d.REFUSETONSCOLLECTED))
+					.attr("width", xScale.bandwidth())
+					.attr("height", d => h - yScale(d.REFUSETONSCOLLECTED))
+					.attr("fill", d => "rgb(0, 0, " + Math.round(d.REFUSETONSCOLLECTED * 10) + ")");
+
+				// Add x-axis
+				svg.append("g")
+					.attr("transform", "translate(0," + h + ")")
+					.call(d3.axisBottom(xScale));
+
+				// Add y-axis
+				svg.append("g")
+					.call(d3.axisLeft(yScale));
+			});
 
 			//Create labels
 			svg.selectAll("text")
