@@ -53,26 +53,26 @@ map.on('load', function () {
         }
     });
 
-    map.addSource('tonnage-data', {
-        'type': 'geojson',
-        'data': '.garbageNYC/assets/aggregated_Tonnage_and_Geodata_byYear.geojson'
-    });
+    // map.addSource('tonnage-data', {
+    //     'type': 'geojson',
+    //     'data': '.garbageNYC/assets/aggregated_Tonnage_and_Geodata_byYear.geojson'
+    // });
 
-    map.addLayer({
-        'id': 'tonnage-extrusion',
-        'type': 'fill-extrusion',
-        'source': 'tonnage-data',
-        'filter': ['==', ['get', 'YEAR'], 2022], // filter for the year 2022
-        'layout': {},
-        'paint': {
-            'fill-extrusion-color': '#aaa',
-            'fill-extrusion-height': [
-                "*", ["get", "REFUSETONSCOLLECTED"], 0.01
-            ],
-            'fill-extrusion-base': 0,
-            'fill-extrusion-opacity': 0.6
-        }
-    });
+    // map.addLayer({
+    //     'id': 'tonnage-extrusion',
+    //     'type': 'fill-extrusion',
+    //     'source': 'tonnage-data',
+    //     'filter': ['==', ['get', 'YEAR'], 2022], // filter for the year 2022
+    //     'layout': {},
+    //     'paint': {
+    //         'fill-extrusion-color': '#aaa',
+    //         'fill-extrusion-height': [
+    //             "*", ["get", "REFUSETONSCOLLECTED"], 0.01
+    //         ],
+    //         'fill-extrusion-base': 0,
+    //         'fill-extrusion-opacity': 0.6
+    //     }
+    // });
 
 
 
