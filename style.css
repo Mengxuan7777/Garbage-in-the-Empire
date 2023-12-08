@@ -44,7 +44,7 @@ position: absolute;
 top: 50%; /* Position the top edge of the element at the center of the container */
 left: 50%; /* Position the left edge of the element at the center of the container */
 transform: translate(-50%, -50%);
-font-size: 400px;
+font-size: 600px;
 z-index: 1;
 }
 
@@ -56,10 +56,11 @@ z-index: 1;
 
 .story {
 position: absolute;
-top: 8px;
-left: 2px;
+top: 40px;
+left: 2%;
 z-index:2;
-width:40%;
+width:30%;
+text-align: left;
 }
 
 .half {
@@ -73,6 +74,7 @@ align-items: center;
 }
 
 .left{
+padding-left: 2%;
 width: 30%;
 align-items: center;
 }

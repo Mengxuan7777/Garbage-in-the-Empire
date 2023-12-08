@@ -37,7 +37,7 @@ map.on('load', function () {
         'layout': {},
         'paint': {
             'fill-color': '#088',
-            'fill-opacity': 0.4,
+            'fill-opacity': 0.2,
             'fill-outline-color': '#000'
         }
     });
@@ -52,6 +52,10 @@ map.on('load', function () {
             'line-width': 1
         }
     });
+
+
+        
+
 
     // map.addSource('tonnage-data', {
     //     'type': 'geojson',
@@ -75,6 +79,23 @@ map.on('load', function () {
     // });
 
 
+});
 
-    
+map.on('load', function () {
+    map.addSource('nyc-garages', {
+        'type': 'geojson',
+        'data': '../assets/DSNY Garages_20231207.geojson'
+    });
+
+    map.addLayer({
+        'id': 'garages',
+        'type': 'circle',
+        'source': 'nyc-garages', // Changed to the correct source reference
+        'paint': {
+            'circle-radius': 4,
+            'circle-color': '#B42222'
+        },
+        'filter': ['==', '$type', 'Point']
+    });
+
 });
