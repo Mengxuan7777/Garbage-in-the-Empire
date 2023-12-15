@@ -25,13 +25,15 @@ position: relative;
 
 .centered {
 position: absolute;
-top: 50%;
+top: 40%;
 left: 50%;
 transform: translate(-50%, -50%);
 }
 
 .background {
 position: absolute;
+width: 100%;
+height:auto;
 top: 0;
 left: 0;
 right: 0;
@@ -39,13 +41,23 @@ bottom: 0;
 z-index: -1; 
 }
 
-.h1 {
+.background video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.title {
 position: absolute;
-top: 50%; /* Position the top edge of the element at the center of the container */
-left: 50%; /* Position the left edge of the element at the center of the container */
+top: 10%; /* Position the top edge of the element at the center of the container */
+/* left: 10%; Position the left edge of the element at the center of the container */
 transform: translate(-50%, -50%);
-font-size: 600px;
+font-size: 120px;
 z-index: 1;
+white-space: nowrap;
 }
 
 #map { 
