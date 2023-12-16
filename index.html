@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garbage in the Empire</title>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
+      <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js'></script>
+      <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.js'></script>
+      <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.css' type='text/css' />
+      <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css' type='text/css' />
+    <script src="https://ajax.googleapis.com/ajax/libs/cesiumjs/1.105/Build/Cesium/Cesium.js"></script>
+    <link href="https://ajax.googleapis.com/ajax/libs/cesiumjs/1.105/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet"> 
+</head>
+<body>
+    <div class="container">
+        <div class="full">
+            <div class="centered">
+                <div class="title">Garbage in the Empire</div>
+            </div>
+            <div class="story">
+                <P>Data Visualization for Architecture, Urbanism and Humanity</P>
+                <P>2023Fall | GSAPP | Columbia University</P>
+                <P>Jonathan Marchos | Mengxuan Liu | MS CDP</P>
+            </div>
+            <div class="background">
+                <video autoplay loop muted>
+                    <source src="img/IMG_1620.MOV">
+                </video>
+            </div>
+        </div>
+        <div class="full">
+            <div class="story">
+                <h2>DSNY Tonage Data</h2>
+                <p>NYC have been collecting the monthly tonage data since 1990, in 59 districts across the 5 boros. These tongage data is divided into different categories, including refused waste, paper waste, school organic waste, leaves collected.</p>
+                <!-- <h1>Garbage in the Empire</h1> -->
+            </div>
+            <div class="background">
+                <img src="img/sankey.gif" width=auto, height=100%>
+                <!-- <video autoplay loop muted>
+                    <source src="img/tonageVideo.mp4">
+                </video> -->
+            </div>
+        </div>
+        <div class="full">
+            <div id='map'></div>
+                <iframe
+                id="inlineFrameExample"
+                title="Inline Frame Example"
+                width=100%
+                height=100%
+                frameborder="0"
+                src="https://mengxuan7777.github.io/GarbageColletctionMap/">
+                </iframe>
+            <div class="story">
+                <h2>Collecting Efforts from DSNY</h2>
+                <p> Under NYC DSNY operations, there are 59 garages across the five boroughs. </p>
+            </div> 
+        </div> 
+        <div class="half">
+            <div class="left">
+                <h2>No Where to Go</h2>
+                <p>New York City's 1811 Commissioners Plan laied out the historical groundwork for the garbage issue in the city. This plan, focused on maximizing land value, failed to allocate sufficient space for garbage handling. The issue became increasingly apparent with the city's urban evolution. </p>
+            </div>
+            <div class="right">
+                <img src="img/plate28-37-42-9ave.jpg">
+            </div>
+        </div>
+        <div class="full">
+            <div id='map'>
+                <iframe
+                id="inlineFrameExample"
+                title="Inline Frame Example"
+                width=100%
+                height=100%
+                frameborder="0"
+                src="https://jon-marchos.github.io/populationvstrashmap/">
+                </iframe>
+            </div>
+            <div class="story">
+                <h2>Landscape of Waste</h2>
+                <p>Different from the geographic map, the landscape of Garbage using the 2020 tonage data to illustrate the waste information of the empire. </p>
+            </div> 
+        </div>
+        <div class="half">
+            <div class="left">
+                <h2>Area, Population, and Tonage of 5 boroughs</h2>
+                <p>New York City's 1811 Commissioners Plan laied out the historical root of the garbage issue. All lands are used to maximize the land value without considering the space for garbage handlling after urban evelution</p>
+            </div>
+            <div class="right">
+                <iframe
+                id="inlineFrameExample"
+                title="Inline Frame Example"
+                width=100%
+                height=800px
+                frameborder="0"
+                src="https://jon-marchos.github.io/boroughcircle/">
+              </iframe>
+            </div>
+        </div>
+        <div class="half">
+            <div class="left">
+                <h2>Amount of Garbage Produced / Individual / Day</h2>
+                <p>According to U.S. Environmental Protection Agency, the average American personnel produce about 5.91 pounds of trash, with about 1.51 pounds being recycled; 4.40 pounds is the rough average daily waste per person.</p>
+                <img src="img/legend-2.jpg" width="500px", height="auto">
+            </div>
+            <div class="right">
+                <iframe
+                id="inlineFrameExample"
+                title="Inline Frame Example"
+                width=100%
+                height=800px
+                frameborder="0"
+                src="https://jon-marchos.github.io/populationvstrash/">
+              </iframe>
+            </div>
+        </div>
+        <div class="half">
+            <div class="left">
+                <h2>How Much You Can Save</h2>
+                <p>Visualizing the current state of tonnage waste and speculating the power of city-wide trash reduction efforts. If each New Yorkers save 1LB of refused waste everyday, the impact over year for each district is magnificent.</p>
+            </div>
+            <div class="right">
+                <iframe
+                id="inlineFrameExample"
+                title="Inline Frame Example"
+                width=100%
+                height=800px
+                frameborder="0"
+                src="https://jon-marchos.github.io/bargraphjia/">
+              </iframe>
+            </div>
+        </div>
+
+
+
+    </div>
+<script src="scripts/scroll.js"></script>
+
+</body>
+</html>
